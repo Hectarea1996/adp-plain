@@ -6,6 +6,17 @@ Welcome to `adp-plain`, an extension to the ADP project.
 
 This extension lets you chose the file to be stored (even its extension). Also it exports some facilities to let you define your own adp functions.
 
+## Installation
+
+Add [Ultralisp](https://ultralisp.org/) to Quicklisp:
+
+```common-lisp
+(ql-dist:install-dist "http://dist.ultralisp.org/"
+                      :prompt nil)
+```
+
+The project will be installed automatically when you `:defsystem-depends-on` it. See below.
+
 ## Usage
 
 In your system definition, add `adp-plain` to the `:defsystem-depends-on` list.
