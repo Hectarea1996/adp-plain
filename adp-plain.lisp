@@ -5,19 +5,37 @@
 (adp:define-adp-operation adp-plain-op)
 
 
-(defvar *output-path* nil)
+(defmacro define-plain-function (name args &body body)
+  (check-type name symbol)
+  (check-type args list)
+  (let ((adp-name (intern (symbol-name name) "ADP-USER"))
+        (args-sym (gensym "ARGS")))
+    `(progn
+       (defun ,adp-name ,args
+         ,@body)
+       (defmacro ,name (&rest ,args-sym)
+         (when adp:*adp*
+           `(adp:add-element (,',adp-name ,@,args-sym)))))))
 
 (defclass output-file-element ()
   ((path :initarg :path
          :reader output-file-path
          :type pathname)))
 
-(defun output-file (path)
+;; (defun adp-user::output-file (path)
+;;   (check-type path (or pathname stream string))
+;;   (make-instance 'output-file-element :path (pathname path)))
+
+;; (defmacro output-file (path)
+;;   (when adp:*adp*
+;;     `(adp:add-element (adp-user::output-file ,path))))
+
+(define-plain-function output-file (path)
   (check-type path (or pathname stream string))
   (make-instance 'output-file-element :path (pathname path)))
 
-(adp:export-adp-symbol 'output-file)
 
+(defvar *output-path* nil)
 
 (defgeneric process-element (element stream)
   (:method ((element t) stream)
