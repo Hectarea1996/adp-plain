@@ -10,6 +10,8 @@
          :reader output-file-path
          :type pathname)))
 
+(defun output-file (path)
+  (make-instance 'output-file-element :path path))
 
 (defvar *output-path* nil)
 

@@ -1,6 +1,5 @@
 
 (defpackage #:adp-plain
   (:use #:cl)
-  (:export #:define-plain-function
-           #:process-element
+  (:export #:print-element
            #:output-file))
