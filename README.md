@@ -8,12 +8,7 @@ This extension lets you chose the file to be stored (even its extension). Also i
 
 ## Installation
 
-Add [Ultralisp](https://ultralisp.org/) to Quicklisp:
-
-```common-lisp
-(ql-dist:install-dist "http://dist.ultralisp.org/"
-                      :prompt nil)
-```
+It is available on Quicklisp.
 
 The project will be installed automatically when you `:defsystem-depends-on` it. See below.
 
